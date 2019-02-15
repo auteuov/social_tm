@@ -6,5 +6,5 @@ Content:
 * `data/txt` input tokenized texts
 * `data/vw` input VowpalWabbit format texts
 * `data/output` results tables of provided experiments
-* topic explorer demo app https://divergent-app.ru/topic_exp
+* topic explorer demo app https://divergent-app.ru/social_tm
 
