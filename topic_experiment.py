@@ -24,25 +24,29 @@ def make_experiment(expr, init_dir, need_transform, num_topics_list,
     logger.info(f"num_topics_list {num_topics_list}")
     logger.info(f"experiment name {expr}")
     if use_hier:
-        total_scores_list, hier, level_list = calc_hier(num_topics_list=num_topics_list,
-                                                        expr=expr, odir=odir,
-                                                        data_path=data_path,
-                                                        reg_dict_list=reg_dict_list,
-                                                        transform_dict=transform_dict,
-                                                        topwords_count=60,
-                                                        df_info=df_info,
-                                                        num_collection_passes=num_collection_passes)
+        total_scores_list, hier, level_list = calc_hier(
+            num_topics_list=num_topics_list,
+            expr=expr, odir=odir,
+            data_path=data_path,
+            reg_dict_list=reg_dict_list,
+            transform_dict=transform_dict,
+            topwords_count=60,
+            df_info=df_info,
+            num_collection_passes=num_collection_passes
+        )
     else:
         if len(num_topics_list) == len(reg_dict_list):
             for num_topics, reg_dict in zip(num_topics_list, reg_dict_list):
-                total_scores_list, hier, level_list = calc_single(num_topics=num_topics,
-                                                                  expr=expr, odir=odir,
-                                                                  data_path=data_path,
-                                                                  reg_dict=reg_dict,
-                                                                  transform_dict=transform_dict,
-                                                                  topwords_count=60,
-                                                                  df_info=df_info,
-                                                                  num_collection_passes=num_collection_passes)
+                total_scores_list, hier, level_list = calc_single(
+                      num_topics=num_topics,
+                      expr=expr, odir=odir,
+                      data_path=data_path,
+                      reg_dict=reg_dict,
+                      transform_dict=transform_dict,
+                      topwords_count=60,
+                      df_info=df_info,
+                      num_collection_passes=num_collection_passes
+                )
         else:
             raise Exception("num_topics_list and reg_dict_list have different length")
 
@@ -79,7 +83,9 @@ def main_hier():
         odir = r"{}/output_summary_hier_tf/{}_{}_reg_{}/".format(init_dir,
                                                                  expr, num_topics_list_str,
                                                                  bool(reg_dict_list[0]))
-        make_experiment(expr, init_dir, need_transform, num_topics_list,
-                        reg_dict_list, num_collection_passes, need_save_model,
-                        data_path, odir, num_topics_list_str, use_hier=use_hier)
+        make_experiment(
+            expr, init_dir, need_transform, num_topics_list,
+            reg_dict_list, num_collection_passes, need_save_model,
+            data_path, odir, num_topics_list_str, use_hier=use_hier
+        )
     print("total elapsed")
